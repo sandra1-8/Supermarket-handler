@@ -3,6 +3,14 @@
 ## What this part does
 An n8n workflow checks every product's expiry date each morning at 8 AM and saves the right discount to the database. It then emails the manager a list of products that need attention. If nothing needs attention, no email is sent.
 
+## Tasks completed
+| Task | What was done | Result |
+|---|---|---|
+| 3.1 | Imported the workflow into n8n and connected it to my own Supabase | Test run succeeded |
+| 3.2 | Built the daily workflow: schedule, calculate and save discounts, get expiring products | Discounts saved in the database. Tested by running it manually; the 8 AM schedule starts once the workflow is published |
+| 3.3 | Added the manager alert email and "no email if nothing is expiring" | Correct email received listing 11 products; no email sent when nothing was expiring |
+| 3.4 | Tested expired, today, 1 to 3 days and none, then exported the JSON to `n8n/` | All cases passed |
+
 ## Tools used
 n8n Cloud (Schedule, PostgreSQL, Filter and Gmail nodes), PostgreSQL on Supabase
 
