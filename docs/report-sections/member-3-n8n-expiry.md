@@ -8,7 +8,7 @@ An n8n workflow checks every product's expiry date each morning at 8 AM and save
 |---|---|---|
 | 3.1 | Imported the workflow into n8n and connected it to my own Supabase | Test run succeeded |
 | 3.2 | Built the daily workflow: schedule, calculate and save discounts, get expiring products | Discounts saved in the database. Tested by running it manually; the 8 AM schedule starts once the workflow is published |
-| 3.3 | Added the manager alert email and "no email if nothing is expiring" | Correct email received listing 11 products; no email sent when nothing was expiring |
+| 3.3 | Added the manager alert email and "no email if nothing is expiring" | Correct email received: 11 products on the first sample data, 31 after the database update; no email sent when nothing was expiring |
 | 3.4 | Tested expired, today, 1 to 3 days and none, then exported the JSON to `n8n/` | All cases passed |
 
 ## Tools used
@@ -21,7 +21,7 @@ n8n Cloud (Schedule, PostgreSQL, Filter and Gmail nodes), PostgreSQL on Supabase
 4. A Filter node stops the workflow if the count is 0.
 5. The Gmail node sends the count and list to the manager.
 
-The public offers page reads the `customer_offers` view, so saved discounts appear there automatically.
+The dashboards and the public offers page read the `products_live` and `customer_offers` views, which work out the same discounts from today's date. The workflow saves the discounts in the `products` table and emails the manager.
 
 ## Screenshots
 ![Workflow after a successful run](../diagrams/n8n-workflow-success.png)
@@ -31,6 +31,8 @@ The public offers page reads the `customer_offers` view, so saved discounts appe
 ![Nothing expiring: no email sent](../diagrams/n8n-no-email.png)
 
 ## Testing
+First tested on the original sample data (20 products), then again after the database update (59 products). The screenshots are from the first test.
+
 | Test | Expected | Result |
 |---|---|---|
 | Expired (Eggs, -1 day) | 0%, "EXPIRED - Remove from shelf" | Pass |
@@ -38,7 +40,10 @@ The public offers page reads the `customer_offers` view, so saved discounts appe
 | 1 day left (Milk, Fish, Paneer, Spinach) | 30% | Pass |
 | 2 to 3 days left (Curd, Bread, Buns, Tomatoes, Cake) | 20% | Pass |
 | 4 or more days left (Bananas, Yogurt and others) | 0%, "No action" | Pass |
-| Manager alert email | One email listing 11 products | Pass |
+| Manager alert email | One email listing every product that needs attention | Pass: 11 on the original data, 31 on the updated data |
+| Out of stock (Strawberries, Veg Sandwich) | Left out of the email | Pass |
+| Saved discounts match the `products_live` view | 0 products differ | Pass |
+| Offers page (`customer_offers`) after the run | 24 products | Pass |
 | Nothing expiring within 3 days | Workflow stops, no email | Pass |
 
 ## Problems faced and how we solved them

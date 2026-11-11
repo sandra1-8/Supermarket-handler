@@ -35,7 +35,7 @@ Email Manager (Gmail)       subject/body filled with {{ $json.total }} and
                             {{ $json.product_list }}
 ```
 
-`customer_offers` is a **view**, so it updates automatically from `products.discount_percent`. n8n never writes to it directly.
+`products_live` and `customer_offers` are **views**. They work out the discount from today's date every time they are read, with the same rules as this workflow, so the dashboards and offers page are right even before n8n runs. n8n saves the discount in the `products` table and sends the email. It never writes to the views.
 
 ## Connect n8n to Supabase
 
