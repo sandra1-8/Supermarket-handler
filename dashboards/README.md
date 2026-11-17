@@ -6,7 +6,7 @@ One shared Budibase app, created by Member 6 on Day 1. Each member edits **only 
 |---|---|---|---|
 | `/manager/overview`, `/manager/products`, `/manager/departments`, `/manager/employees` | Member 5 | `feat/manager-dashboard` | Admin |
 | `/employee/stock`, `/employee/add-stock` + login and roles setup | Member 6 | `feat/employee-dashboard` | Basic |
-| `/offers` | Member 7 | `feat/customer-offers` | Public |
+| `/public-offers` | Member 7 | `feat/customer-offers` | Public |
 
 ## Setup (Member 6, Day 1)
 1. Create a free account at [budibase.com](https://budibase.com) → **Create app**.
@@ -18,9 +18,12 @@ One shared Budibase app, created by Member 6 on Day 1. Each member edits **only 
 |---|---|---|
 | Admin | Manager | All `/manager/*` |
 | Basic | Employees | `/employee/*` |
-| Public | Customers (no login) | `/offers` |
+| Public | Customers (no login) | `/public-offers` |
 
 Employee department filter: `employees.email = {{ Current User.email }}`.
+
+**Published app:** https://yuvtuhj0b.budibase.app/app/default%20workspace/supermarket-dashbord
+Public offers page: the same link + `#/public-offers`. Share the published link, not the builder link.
 
 ## What goes in GitHub
 - `screenshots/`: a screenshot of every finished screen (name: `member5-overview.png` etc.)

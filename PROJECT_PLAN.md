@@ -2,8 +2,6 @@
 
 **Team:** 7 members · **Duration:** 7 days · **Tools:** PostgreSQL (Supabase), n8n, Budibase, GitHub Projects
 
-Replace "Sandra–7" with your names.
-
 ---
 
 ## 1. Who owns what
@@ -17,6 +15,8 @@ Replace "Sandra–7" with your names.
 | 5 | Manager Dashboard (Admin) | `feat/manager-dashboard` | `dashboards/` (manager screens) |
 | 6 | Employee Dashboard & Login | `feat/employee-dashboard` | `dashboards/` (employee screens, roles) |
 | 7 | Customer Offers Page & Report | `feat/customer-offers` | `dashboards/` (offers screen), `docs/` |
+
+The branch names above were the plan. In practice each member worked on their own branch (most in their own fork) and every change reached `master` through a pull request.
 
 ---
 
@@ -121,9 +121,9 @@ Replace "Sandra–7" with your names.
 git init
 git add .
 git commit -m "Initial project structure"
-git branch -M main
+git branch -M master
 git remote add origin https://github.com/<user>/<repo>.git
-git push -u origin main
+git push -u origin master
 
 for b in feat/integration feat/database feat/n8n-expiry feat/notifications feat/manager-dashboard feat/employee-dashboard feat/customer-offers; do
   git branch $b

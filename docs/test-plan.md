@@ -4,7 +4,7 @@
 
 | # | Area | Test | Expected | Result |
 |---|---|---|---|---|
-| 1 | Database | Run `database.sql` on a new Supabase project | 8 departments, 6 employees, 20 products | |
+| 1 | Database | Run `database.sql` on a new Supabase project | 8 departments, 10 employees, 59 products | |
 | 2 | n8n | Run expiry workflow | Milk 30%, Bread 20%, Eggs "EXPIRED", Yogurt "No action" | |
 | 3 | n8n | No product expiring within 3 days | No email sent | |
 | 4 | Email | Manager alert | One email listing all products that need attention | |
